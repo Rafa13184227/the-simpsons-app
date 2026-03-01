@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
-import { ExploreContainerComponent } from '../explore-container/explore-container.component';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent, IonSearchbar } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import {SimpsonsService} from '../services/the-simpsons';
+import { SimpsonsService } from '../services/the-simpsons';
 
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, CommonModule, IonToolbar, IonTitle, IonContent, ExploreContainerComponent],
+  imports: [IonHeader, CommonModule, IonToolbar, IonTitle, IonContent, RouterLink, CommonModule, IonSearchbar, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent],
 })
-export class Tab1Page {
+
+export class Tab1Page implements OnInit {
+  filteredCharacters: any[] = [];
+
   characters: any[] = [];
   currentPage = 1;
   constructor(private rmService: SimpsonsService) { }
@@ -20,7 +23,8 @@ export class Tab1Page {
   }
   loadCharacters(event?: any) {
     this.rmService.getCharacters(this.currentPage).subscribe(res => {
-      this.characters.push(...res.results);
+      this.characters.push(...res.data);
+      this.filteredCharacters = [...this.characters];
       if (event) event.target.complete();
     });
   }
@@ -29,3 +33,5 @@ export class Tab1Page {
     this.loadCharacters(event);
   }
 }
+
+

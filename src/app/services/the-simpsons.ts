@@ -9,10 +9,10 @@ private baseURL = 'https://thesimpsonsapi.com/api';
 
 constructor(private http: HttpClient) {}
 getCharacters(page: number = 1): Observable<any> {
-return this.http.get(`${this.baseURL}/character/?page=${page}`);
+return this.http.get(`${this.baseURL}/characters?page=${page}`);
 
 }
 getCharacterDetails(id: number): Observable<any> {
-return this.http.get(`${this.baseURL}/character/${id}`);
+return this.http.get(`${this.baseURL}/characters/${id}`);
 }
 }

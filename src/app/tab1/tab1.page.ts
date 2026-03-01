@@ -23,8 +23,7 @@ export class Tab1Page implements OnInit {
   }
   loadCharacters(event?: any) {
     this.rmService.getCharacters(this.currentPage).subscribe(res => {
-      this.characters.push(...res.data);
-      this.filteredCharacters = [...this.characters];
+      this.characters.push(...res.results);
       if (event) event.target.complete();
     });
   }

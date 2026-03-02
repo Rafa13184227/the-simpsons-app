@@ -1,28 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Springfield 🍩</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-grid>
-<ion-row>
-<ion-col size="6" *ngFor="let c of characters"
-[routerLink]="['/character-detail', c.id]">
-<ion-card>
-<img [src]="'https://cdn.thesimpsonsapi.com/500' + c.portrait_path" />
-<ion-card-header>
-<ion-card-title>{{ c.name }}</ion-card-title>
-</ion-card-header>
-</ion-card>
-</ion-col>
-</ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let c of characters"
+        [routerLink]="['/character-detail', c.id]">
+        <ion-card>
+          <img [src]="'https://cdn.thesimpsonsapi.com/500' + c.portrait_path" />
+          <ion-card-header>
+            <ion-card-title>{{ c.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-</ion-grid>
-<ion-infinite-scroll (ionInfinite)="loadMore($event)">
-<ion-infinite-scroll-content
-loadingSpinner="bubbles"></ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

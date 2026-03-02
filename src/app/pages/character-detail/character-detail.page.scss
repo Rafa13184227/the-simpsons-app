@@ -1,0 +1,111 @@
+ion-toolbar {
+    --background: #FFD90F;
+    --color: #1A1A2E;
+}
+
+ion-content {
+    --background: #70D1FE;
+}
+
+.character-hero {
+    background: #FFD90F;
+    border-bottom: 4px solid #1A1A2E;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 16px;
+
+    img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #1A1A2E;
+        box-shadow: 4px 4px 0px #1A1A2E;
+        flex-shrink: 0;
+    }
+
+    .character-name-badge {
+        flex: 1;
+
+        h1 {
+            color: #1A1A2E;
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin: 0 0 6px 0;
+            line-height: 1.2;
+        }
+
+        .status-badge {
+            font-size: 0.85rem;
+            font-weight: bold;
+
+            &.alive {
+                color: #2ECC71;
+            }
+
+            &.dead {
+                color: #E74C3C;
+            }
+
+            &.unknown {
+                color: #7F8C8D;
+            }
+        }
+    }
+}
+
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 16px;
+
+    .info-card {
+        background: #FFD90F;
+        border: 3px solid #1A1A2E;
+        border-radius: 10px;
+        box-shadow: 3px 3px 0px #1A1A2E;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #F76F20;
+            font-weight: bold;
+        }
+
+        .value {
+            font-size: 0.95rem;
+            color: #1A1A2E;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+    }
+}
+
+.phrases-section {
+    padding: 0 16px 24px;
+
+    h2 {
+        color: #1A1A2E;
+        font-weight: 900;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .phrase-bubble {
+        background: white;
+        border: 3px solid #1A1A2E;
+        border-radius: 16px 16px 16px 4px;
+        box-shadow: 3px 3px 0px #1A1A2E;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+        font-style: italic;
+        color: #1A1A2E;
+        font-size: 0.9rem;
+    }
+}

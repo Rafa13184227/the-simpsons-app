@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SimpsonsService } from 'src/app/services/the-simpsons';
-import {IonContent, IonHeader, IonTitle, IonToolbar,IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonThumbnail} from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonThumbnail } from '@ionic/angular/standalone';
+import { NgFor, NgIf } from '@angular/common';
+import { TranslateFieldPipe } from 'src/app/pipes/translate-field-pipe';
 
 @Component({
   selector: 'app-character-detail',
@@ -9,14 +11,14 @@ import {IonContent, IonHeader, IonTitle, IonToolbar,IonList, IonItem, IonLabel, 
   styleUrls: ['./character-detail.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar,
+    TranslateFieldPipe, NgFor, NgIf, IonContent, IonHeader, IonTitle, IonToolbar,
     IonList, IonItem, IonLabel, IonBackButton, IonButtons, IonThumbnail
   ]
 })
 export class CharacterDetailPage implements OnInit {
   character: any;
 
-  constructor(private route: ActivatedRoute, private rmService: SimpsonsService) {}
+  constructor(private route: ActivatedRoute, private rmService: SimpsonsService) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');

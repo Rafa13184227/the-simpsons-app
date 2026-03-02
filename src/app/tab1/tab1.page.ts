@@ -3,13 +3,15 @@ import { RouterLink } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent, IonSearchbar } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { SimpsonsService } from '../services/the-simpsons';
+import { TranslateFieldPipe } from '../pipes/translate-field-pipe';
+
 
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader, CommonModule, IonToolbar, IonTitle, IonContent, RouterLink, CommonModule, IonSearchbar, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent],
+  imports: [IonHeader,TranslateFieldPipe, CommonModule, IonToolbar, IonTitle, IonContent, RouterLink, CommonModule, IonSearchbar, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent],
 })
 
 export class Tab1Page implements OnInit {

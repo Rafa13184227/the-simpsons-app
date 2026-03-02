@@ -35,3 +35,28 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+:root {
+    --simpson-yellow: #FFD90F;
+    --simpson-blue: #70D1FE;
+    --simpson-orange: #F76F20;
+    --simpson-skin: #FED90F;
+    --simpson-dark: #1A1A2E;
+    --simpson-white: #FFFFFF;
+}
+
+ion-toolbar {
+    --background: var(--simpson-yellow);
+    --color: var(--simpson-dark);
+}
+
+ion-tab-bar {
+    --background: var(--simpson-yellow);
+    --color: rgba(26, 26, 46, 0.4);
+    --color-selected: var(--simpson-orange);
+}
+
+ion-content {
+    --background: var(--simpson-blue);
+}

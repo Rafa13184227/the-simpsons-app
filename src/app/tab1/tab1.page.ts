@@ -1,38 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent, IonSearchbar } from '@ionic/angular/standalone';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent,
+  IonGrid, IonRow, IonCol, IonCard, IonCardHeader,
+  IonCardTitle, IonSearchbar
+} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { SimpsonsService } from '../services/the-simpsons';
 import { TranslateFieldPipe } from '../pipes/translate-field-pipe';
-
-
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonHeader,TranslateFieldPipe, CommonModule, IonToolbar, IonTitle, IonContent, RouterLink, CommonModule, IonSearchbar, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonInfiniteScroll, IonInfiniteScrollContent],
+  imports: [
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonGrid, IonRow, IonCol, IonCard, IonCardHeader,
+    IonCardTitle, IonSearchbar,
+    RouterLink, CommonModule, FormsModule, TranslateFieldPipe
+  ],
 })
-
 export class Tab1Page implements OnInit {
-  filteredCharacters: any[] = [];
-
   characters: any[] = [];
-  currentPage = 1;
-  constructor(private rmService: SimpsonsService) { }
+  filteredCharacters: any[] = [];
+  searchTerm: string = '';
+
+  constructor(private rmService: SimpsonsService) {}
+
   ngOnInit() {
-    this.loadCharacters();
+    this.loadAllCharacters();
   }
-  loadCharacters(event?: any) {
-    this.rmService.getCharacters(this.currentPage).subscribe(res => {
+
+  loadAllCharacters() {
+    this.rmService.getCharacters(1).subscribe(res => {
       this.characters.push(...res.results);
-      if (event) event.target.complete();
+      this.filterCharacters();
+
+      const totalPages = res.info?.pages ?? 1;
+
+      const requests = [];
+      for (let i = 2; i <= totalPages; i++) {
+        requests.push(this.rmService.getCharacters(i));
+      }
+
+      if (requests.length === 0) return;
+
+      forkJoin(requests).subscribe(responses => {
+        responses.forEach((r: any) => this.characters.push(...r.results));
+        this.filterCharacters();
+      });
     });
   }
-  loadMore(event: any) {
-    this.currentPage++;
-    this.loadCharacters(event);
+
+  filterCharacters() {
+    if (!this.searchTerm.trim()) {
+      this.filteredCharacters = [...this.characters];
+    } else {
+      this.filteredCharacters = this.characters.filter(c =>
+        c.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    }
   }
 }
-
-

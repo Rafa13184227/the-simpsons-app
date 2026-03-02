@@ -4,6 +4,7 @@ const TRANSLATIONS: Record<string, string> = {
   'Alive': 'Vivo',
   'Dead': 'Muerto',
   'unknown': 'Desconocido',
+  'Unknown': 'Desconocido',
 
   'Male': 'Masculino',
   'Female': 'Femenino',
@@ -12,7 +13,8 @@ const TRANSLATIONS: Record<string, string> = {
   'Human': 'Humano',
   'Alien': 'Alienígena',
   'Robot': 'Robot',
-  'Mutant': 'Mutante'
+  'Mutant': 'Mutante',
+  'Fictional': 'Ficticio'
 };
 
 @Pipe({

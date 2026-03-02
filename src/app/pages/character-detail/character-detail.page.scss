@@ -37,23 +37,26 @@ ion-content {
         }
 
         .status-badge {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: bold;
 
             &.alive {
-                color: #2ECC71;
+                color: #4CAF50;
             }
 
             &.dead {
-                color: #E74C3C;
+                color: #E91E63;
             }
 
             &.unknown {
                 color: #7F8C8D;
             }
+
         }
+
     }
 }
+
 
 .info-section {
     display: grid;

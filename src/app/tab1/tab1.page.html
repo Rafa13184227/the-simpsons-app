@@ -5,23 +5,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-searchbar placeholder="Buscar personaje..." [(ngModel)]="searchTerm" (ionInput)="filterCharacters()">
+  </ion-searchbar>
+
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let c of characters"
-        [routerLink]="['/character-detail', c.id]">
+      <ion-col size="6" *ngFor="let c of filteredCharacters" [routerLink]="['/character-detail', c.id]">
         <ion-card>
           <img [src]="'https://cdn.thesimpsonsapi.com/500' + c.portrait_path" />
           <ion-card-header>
             <ion-card-title>{{ c.name }}</ion-card-title>
+            <span class="status" [class.alive]="c.status === 'Alive'" [class.dead]="c.status === 'Dead'" [class.unknown]="c.status === 'unknown'">
+              ● {{ c.status | translateField }}
+            </span>
           </ion-card-header>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>

@@ -24,7 +24,7 @@
   <div class="info-section">
     <div class="info-card">
       <span class="label">Ocupación</span>
-      <span class="value">{{ character?.occupation }}</span>
+      <span class="value">{{ character?.occupation || 'No disponible' }}</span>
     </div>
     <div class="info-card">
       <span class="label">Género</span>
@@ -36,13 +36,13 @@
     </div>
     <div class="info-card">
       <span class="label">Fecha de nacimiento</span>
-      <span class="value">{{ character?.birthdate }}</span>
+      <span class="value">{{ character?.birthdate || 'No disponible' }}</span>
     </div>
   </div>
 
-  <div class="phrases-section" *ngIf="character?.phrases?.length">
+  <div class="phrases-section" *ngIf="character?.quotes?.length">
     <h2>Frases icónicas</h2>
-    <div class="phrase-bubble" *ngFor="let phrase of character?.phrases?.slice(0, 5)">
+    <div class="phrase-bubble" *ngFor="let phrase of character?.quotes?.slice(0, 5)">
       "{{ phrase }}"
     </div>
   </div>
